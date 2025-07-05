@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secret Gift Box for My Sweet Begum Ji</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%; font-family: 'Georgia', serif;
+      background: #1e1e1e; overflow: hidden;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .gift-box {
+      width: 180px; height: 180px;
+      background: linear-gradient(45deg, #ff6b81, #ffcad4);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.2);
+      display: flex; justify-content: center; align-items: center;
+      position: relative; cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    .gift-box::before {
+      content: "🎁";
+      font-size: 4rem;
+      animation: wiggle 2s infinite;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+    .pages {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #1e1e1e;
+      display: none; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 10px; text-align: center; color: white;
+    }
+    .pages.active { display: flex; animation: fadeIn 1s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .img-gift {
+      width: 80%; max-width: 280px; height: auto;
+      border-radius: 20px; margin: 10px 0;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    button {
+      margin-top: 20px; padding: 10px 20px;
+      border: none; background: #ff6b81; color: white;
+      font-size: 1rem; border-radius: 10px;
+      cursor: pointer; box-shadow: 0 0 10px #ff6b81;
+    }
+    .heart {
+      font-size: 3rem; margin: 20px;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+    .ring-box {
+      width: 100px; height: 100px; background: #000;
+      border: 4px solid #fff; border-radius: 10px;
+      display: flex; justify-content: center; align-items: center;
+      margin: 20px;
+    }
+    .ring {
+      font-size: 2.5rem;
+      animation: sparkle 2s infinite;
+    }
+    @keyframes sparkle {
+      0%, 100% { color: #fff700; transform: scale(1); }
+      50% { color: #ffe066; transform: scale(1.2); }
+    }
+    .fireworks {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden;
+    }
+    .firework {
+      position: absolute; width: 6px; height: 6px;
+      background: #fff; border-radius: 50%;
+      animation: explode 2.5s ease-out forwards;
+    }
+    @keyframes explode {
+      0% { transform: translate(0, 0); opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+    }
+    .candle-container {
+      display: flex; gap: 20px; justify-content: center;
+      align-items: flex-end; margin: 20px 0;
+    }
+    .candle {
+      width: 20px; height: 80px; background: #fff;
+      border-radius: 5px; position: relative;
+      box-shadow: 0 0 5px rgba(255,255,255,0.3);
+    }
+    .flame {
+      width: 10px; height: 20px;
+      background: radial-gradient(ellipse at center, yellow 0%, orange 60%);
+      border-radius: 50%;
+      position: absolute; top: -25px; left: 5px;
+      animation: flicker 0.3s infinite alternate;
+    }
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+    .cake-wrapper {
+      position: relative;
+      padding: 20px;
+      animation: floatCake 3s ease-in-out infinite;
+    }
+    .img-cake {
+      width: 80%; max-width: 280px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.3), 0 0 80px rgba(255, 107, 129, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gift-box" onclick="openGift()"></div>
+
+  <div class="pages" id="page">
+    <h1>🎉 Happy Birthday My Sweet Begum Ji!</h1>
+    <p>You’ve unlocked a secret gift box of surprises 💝</p>
+    <button onclick="nextPage()">Open Surprise 🎁</button>
+  </div>
+
+  <div class="pages" id="gift2">
+    <h2>💋 A Soft Kiss</h2>
+    <div class="heart">💋</div>
+    <p>Close your eyes... and feel the magic 😘</p>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="pages" id="gift3">
+    <h2>📝 A Poem for You</h2>
+    <p style="font-style: italic; max-width: 80%;">
+      In your smile, the sunrise glows,<br>
+      In your voice, the river flows.<br>
+      You're my joy, my peace, my song,<br>
+      In your love, I belong. 💘
+    </p>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="pages" id="gift4">
+    <h2>🕯️ Blow Out the Candles!</h2>
+    <div class="candle-container" id="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+    <p>Make a wish and blow them out! 🎂</p>
+    <button onclick="blowCandles()">Blow Out 🕯️</button>
+  </div>
+
+  <div class="pages" id="gift5">
+    <h2>🎂 Cake Cutting Time!</h2>
+    <div class="cake-wrapper">
+      <img class="img-cake" src="https://i.pinimg.com/736x/2f/05/71/2f0571c9c38c813e6c057582da1dae50.jpg" alt="Birthday Cake">
+    </div>
+    <p>Let’s cut the cake and celebrate your beautiful day, my sweet begum ji! ❤️</p>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="pages" id="gift6">
+    <h2>💌 A Love Letter</h2>
+    <p style="max-width: 80%;">
+      My dearest begum ji,<br><br>
+      Every day with you is a blessing. On your special day, I just want to remind you how deeply I cherish you, how much your love has changed my world. You're everything to me. 💫<br><br>
+      Yours forever,<br>
+      Your biggest admirer 💖
+    </p>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="pages" id="gift7">
+    <h2>🌠 The Universe is Ours</h2>
+    <div class="heart">🌌</div>
+    <p>I’d give you the stars if I could. But instead, I give you my whole world 💫✨</p>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="pages" id="gift8">
+    <h2>💍 Will You Accept This Ring?</h2>
+    <div class="ring-box">
+      <div class="ring">💍</div>
+    </div>
+    <p>A promise to always love and cherish you ❤️</p>
+    <button onclick="nextPage(); launchFireworks();">Final Surprise 🎆</button>
+  </div>
+
+  <div class="pages" id="gift9">
+    <h2>🎆 Fireworks for You</h2>
+    <p>To celebrate YOU — the light of my life! 🎇</p>
+    <div class="fireworks" id="fireworks"></div>
+    <button onclick="restart()">Replay Surprise 🔁</button>
+  </div>
+
+  <script>
+    const pages = [
+      "page", "gift2", "gift3", "gift4", "gift5",
+      "gift6", "gift7", "gift8", "gift9"
+    ];
+    let current = 0;
+    function openGift() {
+      document.querySelector('.gift-box').style.display = 'none';
+      document.getElementById(pages[current]).classList.add('active');
+    }
+    function nextPage() {
+      document.getElementById(pages[current]).classList.remove('active');
+      current++;
+      if (current < pages.length) {
+        document.getElementById(pages[current]).classList.add('active');
+      }
+    }
+    function restart() {
+      document.getElementById(pages[current]).classList.remove('active');
+      current = 0;
+      document.querySelector('.gift-box').style.display = 'flex';
+    }
+    function blowCandles() {
+      const flameEls = document.querySelectorAll(".flame");
+      flameEls.forEach(el => el.remove());
+      setTimeout(nextPage, 1200);
+    }
+    function launchFireworks() {
+      const container = document.getElementById('fireworks');
+      let bursts = 10;
+      let interval = setInterval(() => {
+        for (let i = 0; i < 30; i++) {
+          const f = document.createElement('div');
+          f.className = 'firework';
+          f.style.left = Math.random() * 100 + '%';
+          f.style.top = Math.random() * 100 + '%';
+          f.style.setProperty('--x', (Math.random() - 0.5) * 600 + 'px');
+          f.style.setProperty('--y', (Math.random() - 0.5) * 600 + 'px');
+          f.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+          container.appendChild(f);
+          setTimeout(() => f.remove(), 2500);
+        }
+        bursts--;
+        if (bursts <= 0) clearInterval(interval);
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
